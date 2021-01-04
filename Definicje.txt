@@ -1,0 +1,7 @@
+Specyfikatory dostępu (ang. access specifiers):
+    - public - Definicje dostępne są dla każdego
+    - private - Dostęp jedynie wewnątrz klasy       (Klasy dziedzicące nie mają do nich dostępu)
+    - protected - Podobnie do private               (Klasy dziedzicące mają do nich dostęp)
+
+    - Jeśli nie został podany żaden z powyższych, ustawiany jest specyfikator domyślny - package access.
+        Do składowych pakietowych mogą odwoływać się inne klasy z tego samego pakietu. Poza nim, widoczne są jako prywatne.
