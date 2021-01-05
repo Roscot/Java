@@ -5,3 +5,18 @@ Specyfikatory dostępu (ang. access specifiers):
 
     - Jeśli nie został podany żaden z powyższych, ustawiany jest specyfikator domyślny - package access.
         Do składowych pakietowych mogą odwoływać się inne klasy z tego samego pakietu. Poza nim, widoczne są jako prywatne.
+
+
+Tworzenie obiektu składowego - umieszczanie obiektu (powstałego z klasy) wewnątrz nowej klasy. Nowa klasa może być zbudowana z dowolenj liczby obiektów (niezależnie od ich typów), połączonych w dowolne kombinacje.
+
+Kompozycja (ang. composition) - Tworzenie nowych klas, używając klas już istniejących.
+Agregacja (ang. aggregation) - kompozycja, do której dochodzi dynamicznie (w czasie wykonywania programu). Określana jest jako relacja typu 'posiada'
+
+Dziedziczenie (ang. inheritance) - Tworzy nowy typ który kopiuje wszystkie składowe i interfejs klasy bazowej. W porównaniu do kompozycji, nie zapewnia takiej samej elastyczności, ponieważ ograniczenia na powstałe z niego klasy powstają już w czasie kompilacji.
+
+Typ bazowy - posiada cecy i zachowania wspólne dla wszystkich jego typów pochodnych
+Typ pochodny - reprezentuje spbą różne sposoby realizacji idei zawartych w typie bazowym 
+
+Klasa pochodna może rozszerzać bazową (ang. extends), dodając nowe metowy nie stanowiące części interfejsu klasy bazowej. Może również zmienić (przesłonić - ang. overlay) jej zachowanie na nowo definiując jej metody.
+
+Rzutowanie w górę (ang. upcasting) - traktowanie typu pochodnego jakby był typem bazowym
