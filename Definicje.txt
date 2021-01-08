@@ -25,3 +25,10 @@ Rzutowanie w dół (ang. downcasting) - jest wykonywane w czasie działania prog
 
 Typy parametryzowane / Typy ogólne (ang. parametrized types / generics) - klasy, które kompilator automatycznie przystosowuje do pracy z określonymi typami-parametrami. Przykład:
 ArrayList<String> aList = new ArrayList<String>();
+
+Garbage collector - Rozwiązanie zwalniania pamięci obiektów w Javie. Wszystkie obiekty dziediczą po klasie bazowej 'Object', wszystkie można tworzyć jedynie przez dodanie ich na stertę (Specjalny przypadek stanowią typy podstawowe), GC obsługuje zwalnianie pamięci - dzięki mniejszej ilości decyzji do podjęcia i potencjalnych problemów (takich jak wycieki pamieci w C++), programowanie w Javie staje się prostsze niż w C++.
+
+Obsługa wyjątków (ang. exception handling) - Wyjątek stanowi obiekt który zostaje wyrzucony w miejscu wystąpienia błędu i może zostać obsłużony przez 'procedurę obsługi wyjątku' (ang. exception hanldler) przygotowaną do obsługi danego typu błędu. Zgłaszanie wyjątku nie może zostać zignorowane
+
+Współbieżność/Wielowątkowość (ang. concurrency/multithreading) - Idea dzielenia wykonywanego zadania na niezależne fragmenty. W czasie korzystania z zasobów wspólnych, wątek blokuje zasób, wykonuje swoje zadanie i zwalnia blokadę, udostępniając innym wątkom dostęp.
+
