@@ -32,3 +32,25 @@ Obsługa wyjątków (ang. exception handling) - Wyjątek stanowi obiekt który z
 
 Współbieżność/Wielowątkowość (ang. concurrency/multithreading) - Idea dzielenia wykonywanego zadania na niezależne fragmenty. W czasie korzystania z zasobów wspólnych, wątek blokuje zasób, wykonuje swoje zadanie i zwalnia blokadę, udostępniając innym wątkom dostęp.
 
+
+
+
+Pomimo traktowania wszystkiego jako obiekt, jego identyfikator (nazwa) jest tak na prawdę referencją do obiektu. Referencję do obiektu typu String można utworzyć albo z wykorzystaniem słowa 'new':
+    String value = new String("qwerty"); - Tworzy referencję do obiektu i inicjuje ją
+
+Utworzyć jedynie referencję:
+    String = value;
+
+Wykorzystać specyfikę Javy - łańcuch tekstowy może być zainicjowany poprzez podanie wartości obiektu w cudzysłowie: 
+    String value = "qwerty"; 
+
+Słowo kluczowe 'new' można przetłumaczyć jako "Utwórz jeden nowy obiekt określonego typu"
+
+
+
+Przechowywanie danych:
+    1. Rejestry - Najszybciej dostępna pamięć (znajduje się wewnątrz procesora). Liczba rejestrów jest ograniczona a Java nie zapewnia mechanizmów bezpośredniej kontroli nad rejestrami (W C/C++ można manipolować danymi na poziomie kompilatora) 
+    2. Stos - Znajduje się wewnątrz pamięci RAM, ale jest też obsługiwany przez procesor poprzez 'wskaźnik stosu'. Wskaźnik jest przesuwanu w dół (zajmowanie nowego obszaru w pamięci) albo w górę (zwalnianie obszaru pamięci) 
+    3. Sterta
+    4. Obszar Stałych
+    5. Obszar spoza RAM
