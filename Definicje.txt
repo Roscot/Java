@@ -50,7 +50,8 @@ Słowo kluczowe 'new' można przetłumaczyć jako "Utwórz jeden nowy obiekt okr
 
 Przechowywanie danych:
     1. Rejestry - Najszybciej dostępna pamięć (znajduje się wewnątrz procesora). Liczba rejestrów jest ograniczona a Java nie zapewnia mechanizmów bezpośredniej kontroli nad rejestrami (W C/C++ można manipolować danymi na poziomie kompilatora) 
-    2. Stos - Znajduje się wewnątrz pamięci RAM, ale jest też obsługiwany przez procesor poprzez 'wskaźnik stosu'. Wskaźnik jest przesuwanu w dół (zajmowanie nowego obszaru w pamięci) albo w górę (zwalnianie obszaru pamięci) 
-    3. Sterta
-    4. Obszar Stałych
-    5. Obszar spoza RAM
+    2. Stos - Znajduje się wewnątrz pamięci RAM, ale jest też obsługiwany przez procesor poprzez 'wskaźnik stosu'. Wskaźnik jest przesuwanu w dół (zajmowanie nowego obszaru w pamięci) albo w górę (zwalnianie obszaru pamięci). Żeby wygenerować kod odpowiedzialny za przesuwanie wskaźnika stosu, kompilator Javy musi znać rozmiar i czas życia wszystkich danych przechowywanych na stosie podczas tworzenia programu. W pamięci stosu w szczególności przechowywane są referencje do obiektów (same obiekty nie są tam ładowane) 
+    3. Sterta - Fragment pamięci ogólnego zastosowania (Również w RAM), do którego ładowane są wszystkie obiekty Javy w momencie wywołania operatora 'new'. W przeciwieństwie do Stosu kompilator nie musi znać ani rozmiaru ani czasu życia danych przechowywanych na Stercie. Przydzielenie pamięci sterty zajmuje więcej czasu niż w przypadku stosu
+    4. Obszar Stałych - Wartości stałe są umieszczane bezpośrednio w kodzie programu (W ten sposób są zabezpieczone przed jakimikolwiek zmianami). W niektórych przypadkach mogą zostać wydzielone z kodu, przez co mogą znaleźć się w pamięci ROM - przykładami mogą tu być pule ciągów znaków. Wszystkie literały łańcuchowe i inne stałe łańcuchowe mogą być wyodrębnione przez kompilator z kodu i przeniesione do specjalnego obszaru stałych
+    5. Obszar spoza RAM - Dwa przykłady to strumieniowanie obiektów (przekształcanie obiektu w strumień bajtów) i obiekty trwałe (umieszczane na dysku - zachowują swój stan nawet po zakończeniu programu). Oba sposoby zamieniają obiekty w w coś co może zostać przechowane na innym medium i w razie potrzeby przekształcone w postaci stałego obiektu umieszczonego w pamięci RAM.
+    Obecnie Java obsługuje 'trwałość lekką' (ang. lightweight persistence).
