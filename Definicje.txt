@@ -35,7 +35,7 @@ Współbieżność/Wielowątkowość (ang. concurrency/multithreading) - Idea dz
 
 
 
-Pomimo traktowania wszystkiego jako obiekt, jego identyfikator (nazwa) jest tak na prawdę referencją do obiektu. Referencję do obiektu typu String można utworzyć albo z wykorzystaniem słowa 'new':
+Pomimo traktowania wszystkiego jako obiekt, jego identyfikator (nazwa) jest tak na prawdę referencją do obiektu. Referencję do obiektu typu String można utworzyć albo z wykorzystaniem operatora 'new':
     String value = new String("qwerty"); - Tworzy referencję do obiektu i inicjuje ją
 
 Utworzyć jedynie referencję:
@@ -55,3 +55,95 @@ Przechowywanie danych:
     4. Obszar Stałych - Wartości stałe są umieszczane bezpośrednio w kodzie programu (W ten sposób są zabezpieczone przed jakimikolwiek zmianami). W niektórych przypadkach mogą zostać wydzielone z kodu, przez co mogą znaleźć się w pamięci ROM - przykładami mogą tu być pule ciągów znaków. Wszystkie literały łańcuchowe i inne stałe łańcuchowe mogą być wyodrębnione przez kompilator z kodu i przeniesione do specjalnego obszaru stałych
     5. Obszar spoza RAM - Dwa przykłady to strumieniowanie obiektów (przekształcanie obiektu w strumień bajtów) i obiekty trwałe (umieszczane na dysku - zachowują swój stan nawet po zakończeniu programu). Oba sposoby zamieniają obiekty w w coś co może zostać przechowane na innym medium i w razie potrzeby przekształcone w postaci stałego obiektu umieszczonego w pamięci RAM.
     Obecnie Java obsługuje 'trwałość lekką' (ang. lightweight persistence).
+
+
+
+Typy podstawowe - Java adaptuje rozwiązanie z C/C++ - Zamiast tworzyć nowy obiekt wykorzystując operator new (przydzielając tym samym pamięć na stercie), tworzy się zmienną 'automatyczną', która *nie jest referencją* i umieszcza ją na stosie (co jest znacznie wydajniejsze). Specyfika Javy określa dokładny i niezależny od architektury (W przeciwieństwie do większości języków) rozmiar każdego z typów podstawowych. Dzięki tej niezmienności Java zyskuje na przenośności pisanych w niej programów.
+
++---------+----------+-----------+----------------+---------------+
+|  Nazwa  | Rozmiar  |    Min    |      Max       | Typ obiektowy |
++---------+----------+-----------+----------------+---------------+
+| boolean | -        | -         | -              | Boolean       |     - Rozmiar boolean nie jest jawnie określony. Może przyjmować jedynie wartość true lub false
+| char    | 16 bitów | Unicode 0 | Unicode 2^16-1 | Character     |
+| byte    | 8 bitów  | -128      | +127           | Byte          |     - Wszystkie typy numeryczne są typami ze znakiem (ang. signed)
+| short   | 16 bitów | -2^15     | +2^15-1        | Short         |
+| int     | 32 bity  | -2^31     | +2^31-1        | Integer       |
+| long    | 64 bity  | -2^63     | +2^63-1        | Long          |
+| float   | 32 bity  | IEEE754   | IEEE754        | Float         |
+| double  | 64 bity  | IEEE754   | IEEE754        | Double        |
+| void    | -        | -         | -              | Void          |
++---------+----------+-----------+----------------+---------------+
+
+Klasy opakowujące (Boolean, Character, Byte...), odpowiadające typom podstawowym, pozwalają na tworzenie na stercie obiektów reprezentujących te typy:
+Boolean b = new Boolean(true);
+
+
+
+Automatyczne pakowanie (ang. autoboxing) - mechanizm pozwalający na konwersję wartości typu podstawowego na postać obiektu:
+Integer value = 123;
+
+i odwrotnie:
+int value = 123;
+
+
+Liczby wysokiej precyzji: BigInteger, BigDecimal - nie posiadają swojego odpowiednika w typach podstawowych. Obie klasy posiadają metody pozwalające na operacje podobne do tych które możemy wykonać na typach podstawowych. Działanie będzie wolniejsze niż w przypadku int czy float, ale precyzja jest tu uzyskiwana kosztem czasu.
+BigInteger - typ całkowity dowolnej precyzji (można przechowywać w nim zmienne całkowite dowolnych rozmiarów bez utraty jakichkolwiek informacji podczas obliczeń)
+BigDecimal - typ stałoprzecinkowy dowolnej precyzji
+
+
+
+
+Tablice
+Java gwarantuje, że każda tablica zostanie zainicjowana i nie można wyjść poza jej obszar (W przeciwieństwie do C/C++ gdzie są one jedynie obszarami pamięci). Sprawdzanie zakresu i indeksu podczas pracy programu wymaga dodatkowej pamięci dla każdej tablicy, ale zyskujemy dzięki temu niezawodność i większą produktywność. Dodatkowo Java potrafi w niektórych przypadkach zoptymalizować odwołania do tablic.
+
+Tworząc tablicę obiektów tworzymy de facto tablicę referencji do obiektów, z których każda jest automatycznie ustawiana na null (wyróżniona wartość pusta) a odwoływanie się do niezainicjowanej referencji prowadzi do komunikatu błędu. 
+W przypadku tablicy typów podstawowych, kompulator zapewnia inicjalizację poprzez wyzerowanie obszaru przydzielonego tablicy.
+
+
+
+Zasięg (ang. scope) - widoczność i czas życia zmiennych zdefiniowanych w jego ramach. Zmienna zdefiniowana w zasięgu jest dostęna tylko do miejsca jego zakończenia. W C, C++ i Javie zasięg jest określony przez nawiasy klamrowe:
+
+{
+    int a = 1;
+
+    // Tylko 'a' dostępny
+
+    {
+        int b=2;
+
+        // Obie zmienne dostępne
+    }
+
+    // Tylko 'a' dostępny
+    // b - out of scope
+}
+
+
+
+W przeciwieństwie do typów podstawowych, obiekt istnieje również poza swoim zasięgiem:
+
+{ 
+    Integer value = new Integer(123);
+}
+
+Referencja 'value' przepadnie wraz z końcem zasięgu, natomiast obiekt typu Integer będzie wciąż zajmował przypisaną mu pamięć (ale nie będzie można już z niego skorzystać, bo utraciliśmy do niego referencję).
+
+Obiekty utworzone z wykorzystaniem operatora new są przechowywane tak długo, jak długo są potrzebne. Odśmiecacz pamięci (ang. garbage collector) sprawdza wszystkie utworzone w ten sposób obiekty i wykrywa te, do których nie aktualnych referencji. Paimięć tych obiektów zostaje zwolniona, dzięki czemu może zostać ponownie wykorzystana przez kolejne. Programista nie musi dbać o zwalnianie pamięci - kiedy obiekt nie jest już używany ginie samoczynnie.
+
+
+
+
+
+
+Tworzenie nowego 'typu' obiektu - słowo kluczowe class:
+
+class TypeName { }
+
+Z utworzonego typu można już utworzyć nowy obiekt:
+
+TypeName x = new TypeName();
+
+Definiując nową klasę możemy w niej zamieścić dwa rodzaje elementów:
+    - pola (zmienne, nazywane również danymi składowymi) - To obiekty dowolnych typów dostępne przy użyciu referencji (lub typy podstawowe)
+    - metody (nazywane również funkcjami składowymi)
+
