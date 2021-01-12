@@ -135,15 +135,60 @@ Obiekty utworzone z wykorzystaniem operatora new są przechowywane tak długo, j
 
 
 
-Tworzenie nowego 'typu' obiektu - słowo kluczowe class:
+Tworzenie nowego 'typu' obiektu - Wykorzystujemy do tego słowo kluczowe 'class', po którym następuje nazwa nowego typu:
 
-class TypeName { }
+class TypeName { /* class body */ }
 
-Z utworzonego typu można już utworzyć nowy obiekt:
+Z tak powstałej klasy (typu) można utworzyć nowy obiekt dzięki operatorowi new:
 
 TypeName x = new TypeName();
 
 Definiując nową klasę możemy w niej zamieścić dwa rodzaje elementów:
-    - pola (zmienne, nazywane również danymi składowymi) - To obiekty dowolnych typów dostępne przy użyciu referencji (lub typy podstawowe)
+    - pola (zmienne, nazywane również danymi składowymi) - To obiekty dowolnych typów dostępne przy użyciu referencji, lub typy podstawowe. Kiedy mamy do czynienia z referencją do obiektu należy taką zmienną zainicjować (new)
     - metody (nazywane również funkcjami składowymi)
 
+Każdy obiekt odpowiada za utrzymanie własnego obszaru pamięci dla swoich pól (które nie są współdzielone pomiędzy obiektami - scope)
+Do pól można odwoływać się poprzez referencję obiektu, kropkę i nazwę pola: example.data  . W przypadku obiektu zawierającego w sobie inne obiekty, każdy kolejny łączymy kropką: example.dataContainer.value1  .
+
+Jeśli pole jest jednym z typów podstawowych i nie zostanie jawnie zainicjowane, otrzymuje wartość domyślną:
+
++---------+------------------+
+|  Nazwa  | Wartość domyślna |
++---------+------------------+
+| boolean | false            |
+| char    | '\u0000'         |
+| byte    | (byte)0          |
+| short   | (short)0         |
+| int     | 0                |
+| long    | 0L               |
+| float   | 0.0f             |
+| double  | 0.0d             |
++---------+------------------+
+
+Wartości domyślne są ustawiane zawsze, kiedy zmienna stanowi składową klasy. Nie dotyczy to zmiennych lokalnych - tych, które nie są polami. Zmienna "int x" wewnątrz definicji metody nie będzie automatycznie inicjowana na domyślną wartość i będzie przechowywać w sobie wartość nieokreśloną. Podczas kompilacji otrzymamy informację o błędzie - 'zmienna może nie być zainicjowana'.
+
+
+
+
+Metody
+Metody w Javie określają komunikaty które może otrzymać obiekt. Każda metoda składa się na:
+    - zwracany typ - typ wartości zwracanej po wywołaniu metody,
+    - nazwę,
+    - lista argumentów (sygnatura metody) - zawiera typy oraz nazwy informacji przekazywanych do metody. Przekazując obiekty do listy w rzeczywistości przekazujemy ich referencje (Za wyjątkiep typów podstawowych),
+    - ciało metody
+
+Metody w Javie mogą występować wyłącznie jako składowe klasy. Mogą być wywołane jedynie na rzecz obiektu (Wyjątek stawnowią metody statyczne - które można wywoływać na rzecz klasy, bez wymogu istnienia obiektu) a obiekt musi być do tego upoważniony. Do metod odwołujemy się analogicznie jak do pól, przy użyciu kropki, dodatkowo podając listę argumentów w nawiasach okrągłych:
+
+exampleObject.exampleMethod("qwerty", 1, 2, 3);
+
+Określane jest to mianem "wysyłania komunikatu do obiektu".
+
+
+
+#return
+Słowo kluczowe return odpowiada za opuszczenie metody, a jeśli ta zwraca jakąś wartość, to jest ona umieszczana tuż po nim. W przypadku metody typu 'void', return stanowi jedynie punkt wyjścia z metody (Dlatego nie jest wymagane użycie go na końcu ciała metody).
+
+
+Widoczność nazw - celem uniknięcia kolizji nazw bibliotek, w przypadku Javy należy posługiwać się odwróconą nazwą domeny internetowej (Kropki oznaczają tu przejście do kolejnych podkatalogów). Nazwy pakietów pisane są małymi literami. Przykładowo dla domeny mycomain.com:
+
+com.mydomain.utility.mylibrary
