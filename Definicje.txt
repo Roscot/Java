@@ -192,3 +192,44 @@ Słowo kluczowe return odpowiada za opuszczenie metody, a jeśli ta zwraca jaką
 Widoczność nazw - celem uniknięcia kolizji nazw bibliotek, w przypadku Javy należy posługiwać się odwróconą nazwą domeny internetowej (Kropki oznaczają tu przejście do kolejnych podkatalogów). Nazwy pakietów pisane są małymi literami. Przykładowo dla domeny mycomain.com:
 
 com.mydomain.utility.mylibrary
+
+
+
+import - instrukcja kompilatora, która wprowadza nowy pakiet (bibliotekę klas). W innych językach biblioteki motą przechowywać również funkcje i dane, ale w Javie wszystko musi być opakowane w klasę. 
+
+import java.util.ArrayList;
+import java.util.*;            - import wszystkich klas z pakietu 'util'
+
+
+
+
+
+
+Static - stosowane w dwóch przypadkach:
+    - Kiedy potrzebujemy jednego obszaru pamięci dla konkretnych danych. Niezależnie od ilości czy istnienia obiektu,
+    - Kiedy potrzebujemy metody, która nie jest powiązana z żadnym konkretnym obiektem danej klasy i którą można wykonać niezależnie od istnienia obiektu
+
+Coś jest 'statyczne', kiedy pole lub metoda nie jest powiązane z konkretnym egzemplarzem klasy. Odpowiednikiem 'statyczności' w niektórych językach obiektowych jest określenie 'zmiennej klasowej' i 'metody klasowej'.
+
+Tworzenie statycznego pola/metody:
+
+class exampleClass() {
+    static boolean b = true;
+
+    static void flipValue() { exampleClass.b=!exampleClass.b; }
+}
+
+Tworząc obiekty ec1 i ec2 z powyższej klasy nadal istnieje tylko jeden obszar pamięci współdzielony pomiędzy nimi:
+
+exampleClass ec1 - new exampleClass();
+exampleClass ec2 - new exampleClass();
+
+
+Do pola można odwołać się poprzez nazwę obiektu lub klasy, połączonego kropką z jego polem/metodą:
+
+ec1.b
+exampleClass.b
+
+Modyfikacja takiego pola będzie widoczna w obu obiektach (i bezpośrednio poprzez klasę). Dobrą praktyką w odwoływaniu się do składowej statycznej jest robienie tego poprzez nazwę klasy (a nie obiektu). W ten sposób podkreśla się statyczność pola a dodatkowo niekiedy można takie odwołanie zoptymalizować.
+
+// public static void main()
