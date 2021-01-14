@@ -233,3 +233,43 @@ exampleClass.b
 Modyfikacja takiego pola będzie widoczna w obu obiektach (i bezpośrednio poprzez klasę). Dobrą praktyką w odwoływaniu się do składowej statycznej jest robienie tego poprzez nazwę klasy (a nie obiektu). W ten sposób podkreśla się statyczność pola a dodatkowo niekiedy można takie odwołanie zoptymalizować.
 
 // public static void main()
+
+
+
+
+Nazwa klasy publicznej musi odpowiadać nazwie pliku w którym jest zapisana. Tworząc niezależny program, klasa musi zawierać również metodę 'main()' o sygnaturze: 
+
+public static void main(String[] args)
+
+Argument args ( tablica obiektów typu String ) jest wymagany przez kompilator ponieważ przechowuje parametry wejściowe programu. 
+
+
+
+System.out.println(new Date());
+                        ^ obiekt klasy Date tworzony jest tylko w celu przekazania wartośći do metody printls(). Pow ykonaniu polecenia jest zbędny i może być w każdej chwili usunięty z pamięci przez garbage collector.
+
+
+
+
+
+Komentarze/Dokumentacja
+
+//Pojedyczny Komentarze
+
+/* Komentarz
+   blokowy   */
+
+Javadoc - narzędzie generujące dokumentację na podstawie komentarzy zawartych w plikach z kodem Javy. Na podstawie znaczników komentarzy oraz nazw klas i metod można wygenerować dokumentację zapisaną w formacie HTML. Dodatkowo można wszystko wzbogacić o doclety - procedury obsługi komentarzy pozwalające na modyfikowanie generowanego pliku 
+Komentarze Javadoc występują wyłącznie po znacznikach rozpoczynających '/**', zakończonych znacznikami '*/'. Alternatywnym sposobem jest osadzenie kodu HTML.
+
+//: object/Documentation1.java
+/** Komentarz do klasy */
+public class Documentation1 {
+    /** Komentarz do pola */
+    public boolean a;
+
+    /** Komentarz do metody */
+    public void f() {}
+} ///:~
+
+Javadoc generuje dokumentację jedynie dla składowych typu public lub protected. Komentarze do składowych private i pakietowych są ignorowane - można wymusić dodanie ich do dokumentacji wykorzystując flagę '-private' w Javadoc.
