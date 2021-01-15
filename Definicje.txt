@@ -258,18 +258,3 @@ Komentarze/Dokumentacja
 
 /* Komentarz
    blokowy   */
-
-Javadoc - narzędzie generujące dokumentację na podstawie komentarzy zawartych w plikach z kodem Javy. Na podstawie znaczników komentarzy oraz nazw klas i metod można wygenerować dokumentację zapisaną w formacie HTML. Dodatkowo można wszystko wzbogacić o doclety - procedury obsługi komentarzy pozwalające na modyfikowanie generowanego pliku 
-Komentarze Javadoc występują wyłącznie po znacznikach rozpoczynających '/**', zakończonych znacznikami '*/'. Alternatywnym sposobem jest osadzenie kodu HTML.
-
-//: object/Documentation1.java
-/** Komentarz do klasy */
-public class Documentation1 {
-    /** Komentarz do pola */
-    public boolean a;
-
-    /** Komentarz do metody */
-    public void f() {}
-} ///:~
-
-Javadoc generuje dokumentację jedynie dla składowych typu public lub protected. Komentarze do składowych private i pakietowych są ignorowane - można wymusić dodanie ich do dokumentacji wykorzystując flagę '-private' w Javadoc.

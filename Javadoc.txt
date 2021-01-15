@@ -1,0 +1,71 @@
+Javadoc - narzędzie generujące dokumentację na podstawie komentarzy zawartych w plikach z kodem Javy. Na podstawie znaczników komentarzy oraz nazw klas i metod można wygenerować dokumentację zapisaną w formacie HTML. Dodatkowo można wszystko wzbogacić o doclety - procedury obsługi komentarzy pozwalające na modyfikowanie generowanego pliku. Każdy wygenerowany dokument jest w tym samym formacie jak reszta dokumentacji Javy. 
+Komentarze Javadoc występują wyłącznie po znacznikach rozpoczynających '/**', zakończonych znacznikami '*/'. Alternatywnym sposobem jest osadzenie kodu HTML.
+
+//: object/Documentation.java
+/** Komentarz do klasy */
+public class Documentation {
+    /** Komentarz do pola */
+    public boolean a;
+
+    /** Komentarz do metody */
+    public void f() {}
+} ///:~
+
+Javadoc generuje dokumentację jedynie dla składowych typu public lub protected. Komentarze do składowych private i pakietowych są ignorowane - można wymusić dodanie ich do dokumentacji wykorzystując flagę '-private' w Javadoc.
+
+
+Osadzony HTML
+HTML załączony w bloku komentarzy Javadoc (zarówno dla klas, zmiennych jak i metod), jest przekazywany bezpośrednio do dokumentacji (podstawowym argumentem za tym jest formatowanie kodu):
+
+//: object/Documentation.java
+/**
+* <pre>
+* System.out.println(new Date());
+* </pre>
+* Example list:
+* <ol>
+* <li> Element 1
+* <li> Element 2
+* <li> Element 3
+* <li> Element 4
+* </ol>
+*/
+///:~
+
+* - Wszystkie gwiazdki i spacje na początku wierszy są ignorowane. Wiele rzeczy jest formatowanych automatycznie, w celu zachowania standardu. Dlatego nie należy stosować znaczniów <h1>, <hr> - wprowadzają niezgodność z nagłówkami które dodaje Javadoc.
+
+
+
+Wyróżnione znaczniki Javadoc:
+    - @see - (klasa, zmienna, metoda) - pozwala na odowłanie do dokumentacji innej klasy. Każdy znacznik dodaje odnośnik w sekcji "See also". Uwaga - JAvadoc nie sprawdza odnośników.
+        @see className
+        @see className#methodName
+
+    - {@link pakiet.klasa#składowa etykieta} - Analogicznie jak @see, ale może być stosowany wewnątrz dowolnego wiersza wewnątrz komentarza. 
+
+    - {@docRoot} - Tworzy względną ścieżkę do głównego katalogu dokumentacji (Zastosowanie przy tworzeniu jawnyh odniesień do stron w hierarchii katalogów zawierających dokumentację)
+
+    - {@inheritDoc} - Załącza dokumentację klasy bazowej
+
+    - @version - Komentarz do wersji. Dodając flagę -version przy wywołaniu Javadoc, informacja_o_wersji zostanie zamieszczona w dokumentacji
+        @version informacja_o_wersji
+    
+    - @author - Analogicznie do @version - flaga -author. Zamieszczając wiele znaczników @author, wszystkie zostaną zebrane w jednym akapicie pliku html
+        @author informacja_o_autorze
+
+    - @since - Pozwala określić od której wersji kodu wprowadzona została właściwość. 
+
+    - @param - (metody) - nazwa_parametru to identyfikator parametru z sygnatury metody (listy parametrów), którego będzie dotyczyć opis. Przyjmuje się, że opis kończy się z kolejnym znacznikiem dokumentowania kodu. Przyjmuje się, że ka każy identyfikator z sygnatury metody przypada jeden znacznik @param. 
+        @param nazwa_parametru opis
+
+    - @return - (metody) - Opis zwracanej przez metodę wartości
+        @return opis
+
+    - @throws - Analogicznie do @return
+        @throws klasa_wyjątku opis
+
+    - @deprecated - Opis wypartych i nieaktualnych własności. Znacznik ten, po zastosowaniu oznaczonej nim metody, generuje ostrzeżenie kompilatora. W Javie SE5 został zastąpiony przez adnotację @Deprecated.
+
+
+Przykład:
+

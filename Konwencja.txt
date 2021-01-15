@@ -1,0 +1,10 @@
+klasy - pierwsza litera w nazwie uppercase. Nazwy składające się z wielu słów łączyć przez CamelCase:
+    class ExampleClass
+
+metody, pola, nazwy referencji - pierwsza litera w nazwie lowercase. Reszta CamelCase:
+
+class ExampleClass {
+    int someValue;
+
+    void someMethod(int methodParameter) {}
+}
