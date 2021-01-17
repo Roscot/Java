@@ -8,7 +8,7 @@ import java.util.*;
  * @version 4.0
  */
 
-public class exercise12 {
+public class Main {
     /** Punkt werjścia do klasy i aplikacji
      * @params args tablica argumentów wywołania
      * @throws exceptions nie zgłasza wyjątków
