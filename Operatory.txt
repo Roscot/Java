@@ -1,0 +1,15 @@
+Operator przyjmuje argumenty (jeden, lub wiele) i zwraca nową wartość. Może on zmienić wartość operandu (co nazywane jest efektem ubocznym). Prawie wszystkie działają tylko na typach podstawowych, za wyjątkiem =, ==, != które działają ze wszystkimi obietkami. Klasa String obsługuje również + i +=
+
+Operatory
+ + dodawanie
+ - odejmowanie i jednoargumentowy minus
+ * mnożenie
+ / dzielenie
+ = podstawienie
+
+Kiedy kompilator natrafia w kodzie na String po którym następuje operator '+' i wartość typu innego od String, będzie próbować dokonać na niej konwersji do tego typu.
+
+
+Przypisanie
+W przypadku przypisywania obiektów należy zachować szczególną uwagę. Operacja wykonywana jest na referencji, zatem przypisanie jednego obiektu do drugiego skutkuje skopiowaniem referencji. Pisząc 'c = d' zarówno c jak i d będą wskazywać na ten sam obiekt. Zjawisko to nazywane jest 'przypisaniem nazwy' (ang. aliasing).
+Aliasing występuje również podczas przekazywania obiektu do metody (pass by reference)
