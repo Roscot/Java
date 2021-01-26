@@ -1,0 +1,17 @@
+Generator liczb losowych
+
+
+Random rand = new Random();      - System wykonawczy w roli argumentu użyje bieżącego czasu systemowego i nim zainicjuje zarodek generatora liczb losowych
+Random rand = new Random(47);
+
+
+Wartość zarodka - wartość inicjalizująca generator losowy, ustalająca jego stan i pozwalająca na odtwarzanie generowanych sekwencji liczb. Wymusza on jednakowe sekwencje liczb, niezależnie od momentu uruchomienia programu.
+
+
+Klasa random dysponuje metodami:
+nextInt()
+nextLong()
+nextFloat()
+nextDouble()
+
+Przekazanie argumentu do metody 'next___()' ustawia górną granicę przedziału losowania. Granica dolna to zawsze zero

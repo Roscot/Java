@@ -1,11 +1,20 @@
 Operator przyjmuje argumenty (jeden, lub wiele) i zwraca nową wartość. Może on zmienić wartość operandu (co nazywane jest efektem ubocznym). Prawie wszystkie działają tylko na typach podstawowych, za wyjątkiem =, ==, != które działają ze wszystkimi obietkami. Klasa String obsługuje również + i +=
 
 Operatory
+ = podstawienie
  + dodawanie
  - odejmowanie i jednoargumentowy minus
  * mnożenie
  / dzielenie
- = podstawienie
+ % modulo (reszta z dzielenia całkowitego)
+
+ += Skrócony zapis podstawienia i dodawania
+ -=
+ *=
+ /=
+ %=
+ Jednoargumentowy minus "x = -a" - liczba przeciwna
+ JEdnoargumentowy plus  "x = +a" - wprowadzony dla symetrii z minusem, ale nie daje żadnego efektu
 
 Kiedy kompilator natrafia w kodzie na String po którym następuje operator '+' i wartość typu innego od String, będzie próbować dokonać na niej konwersji do tego typu.
 
